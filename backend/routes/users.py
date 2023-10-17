@@ -3,6 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Body, Depends, HTTPException
 from pydantic import BaseModel
 
+from helpers.hashed_users import encode_token
 from models import User
 from helpers.crud import create_hash, get_user_by_login
 from helpers.dependencies import get_db
@@ -31,7 +32,10 @@ async def auth(
                     hashed_password=create_hash(user_data.password))
     db.add(new_user)
     db.commit()
-    return "OK"
+
+    token_str = encode_token(new_user)
+    token = {"access_token": token_str, "token_type": "bearer"}
+    return token
 
 
 @user_router.post("/login")
@@ -46,4 +50,6 @@ async def login(
     if user.hashed_password != create_hash(user_data.password):
         raise HTTPException(status_code=400, detail="wrong password")
 
-    return "OK"
+    token_str = encode_token(user)
+    token = {"access_token": token_str, "token_type": "bearer"}
+    return token

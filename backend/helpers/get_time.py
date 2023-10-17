@@ -11,5 +11,6 @@ def get_current_time():
     hour = moment[0]
     minute = moment[1]
     second = moment[2][:2]
+
     current_day = f"{year}:{month}:{day} {hour}:{minute}:{second}"
     return current_day
