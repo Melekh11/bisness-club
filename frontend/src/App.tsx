@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useAppDispatch, useAppSelector } from './store/hooks';
+import { selectLogged } from './store/userSlice';
+import { useRef, useState } from 'react';
+import { userAPI } from './api/userAPI';
+import Dialog from './components/Dialog/Dialog';
+import Counter from './components/Counter/Counter';
+import "./App.css";
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const logged = useAppSelector(selectLogged);
+  const dispatch = useAppDispatch();
+
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const loginRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null)
+
+  const [isAuthAlert, setAuthAlert] = useState<boolean>(false);
+
+  const LoginButton = () => (
+    <button
+      className="login-btn"
+      onClick={() => {
+        if (logged) userAPI.logout()(dispatch);
+        else if (dialogRef.current) dialogRef.current.showModal();
+      }}
+    >{logged ? "logout" : "login"}</button>
+  )
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {!logged && <span className="top-alert">log in to be able to click</span>}
+
+      <Dialog
+        dialogRef={dialogRef}
+        loginRef={loginRef}
+        passwordRef={passwordRef}
+        isAlert={isAuthAlert}
+        setAlert={setAuthAlert}
+      />
+
+      <LoginButton/>
+
+      <Counter/>
     </>
   )
 }
 
-export default App
+export default App;

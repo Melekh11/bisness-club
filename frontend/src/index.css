@@ -2,6 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  width: 100%;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -37,6 +38,7 @@ h1 {
 }
 
 button {
+  margin: 10px;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -48,10 +50,44 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #553c9a;
 }
 button:focus,
 button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+input {
+  margin: 10px;
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  transition: border-color 0.25s;
+}
+input:hover {
+  border-color: #553c9a;
+}
+input:focus,
+input:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+dialog {
+  /* margin: 10px; */
+  border: 1px solid black;
+  border-radius: 10px;
+  transition: border-color 0.25s;
+  padding: 50px;
+  width: 40%;
+}
+dialog:hover {
+  border-color: #553c9a;
+}
+dialog:focus,
+dialog:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
@@ -66,4 +102,11 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+@font-face {
+  font-family: 'Neon';
+  src: url('./assets/fonts/TiltNeon-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
