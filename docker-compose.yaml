@@ -52,8 +52,7 @@ services:
       - backend
     networks:
       - awesome
-    
-
+      
 volumes:
   postgres:
   pgadmin:
