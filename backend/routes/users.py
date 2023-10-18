@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from helpers.hashed_users import encode_token
 from models import User
 from helpers.crud import create_hash, get_user_by_login
-from helpers.dependencies import get_db
+from helpers.dependencies import get_db, get_user
 
 
 user_router = APIRouter(
@@ -53,3 +53,8 @@ async def login(
     token_str = encode_token(user)
     token = {"access_token": token_str, "token_type": "bearer"}
     return token
+
+
+@user_router.get("/me")
+async def me(user=Depends(get_user)):
+    return {"id": user.id, "login": user.login}
