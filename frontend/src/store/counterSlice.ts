@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { tokenProvider } from '../helpers/tokenKeeper';
+import { tokenProvider } from '../helpers/tokenProvider';
 import { actionAPI } from '../api/actionAPI';
 
 export type CounterState = {

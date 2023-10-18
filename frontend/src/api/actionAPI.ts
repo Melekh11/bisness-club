@@ -1,4 +1,4 @@
-import { tokenProvider } from "../helpers/tokenKeeper";
+import { tokenProvider } from "../helpers/tokenProvider";
 import { increment as incrementAction, decrement as decrementAction } from "../store/counterSlice";
 import { AppDispatch } from "../store/store";
 import { BaseAPI } from "./baseAPI";

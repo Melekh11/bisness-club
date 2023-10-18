@@ -1,4 +1,4 @@
-import { tokenProvider } from "../helpers/tokenKeeper"
+import { tokenProvider } from "../helpers/tokenProvider"
 import { setCounter } from "../store/counterSlice"
 import { AppDispatch } from "../store/store"
 import { login, logout } from "../store/userSlice"

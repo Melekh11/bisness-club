@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { tokenProvider } from '../helpers/tokenKeeper';
+import { tokenProvider } from '../helpers/tokenProvider';
 import { userAPI } from '../api/userAPI';
 
 type UserSlice = {
