@@ -44,6 +44,16 @@ services:
     networks:
       - awesome
 
+  frontend:
+    build: ./frontend
+    ports:
+      - "88:5173"
+    depends_on:
+      - backend
+    networks:
+      - awesome
+    
+
 volumes:
   postgres:
   pgadmin:
